@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<!-- saved from url=(0043)https://almeida-cma.github.io/mob08/av.html -->
+<html lang="pt-BR"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📝 Avaliação de Programação Mobile - Nível Iniciante</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            min-height: 100vh;
+            padding: 30px 16px;
+            color: #1e293b;
+        }
+
+        .container { max-width: 900px; margin: 0 auto; }
+
+        /* ===== HEADER ===== */
+        .header {
+            background: linear-gradient(135deg, #14b8a6, #0ea5e9);
+            border-radius: 20px;
+            padding: 30px 25px;
+            margin-bottom: 22px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .header h1 { font-size: 1.8rem; margin-bottom: 8px; }
+        .header h1 span { color: #fef08a; }
+        .header p { opacity: 0.95; font-size: 1rem; line-height: 1.6; }
+
+        .badge-group {
+            display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 14px;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px 14px;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        /* ===== CABEÇALHO DA PROVA ===== */
+        .cabecalho-prova {
+            background: white;
+            border-radius: 16px;
+            padding: 22px 26px;
+            margin-bottom: 22px;
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.1);
+        }
+
+        .linha-aluno {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 14px;
+            margin-bottom: 12px;
+        }
+
+        .campo { display: flex; flex-direction: column; }
+
+        .campo label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #475569;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .campo input {
+            padding: 10px 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 0.92rem;
+            font-family: inherit;
+        }
+
+        .campo input:focus { outline: none; border-color: #14b8a6; }
+
+        /* ===== INSTRUÇÕES ===== */
+        .instrucoes {
+            background: #ecfeff;
+            border-left: 5px solid #0ea5e9;
+            border-radius: 12px;
+            padding: 16px 22px;
+            margin-bottom: 22px;
+            font-size: 0.9rem;
+            line-height: 1.75;
+            color: #0c4a6e;
+        }
+
+        /* ===== SEÇÕES ===== */
+        .secao-titulo {
+            background: linear-gradient(135deg, #14b8a6, #0ea5e9);
+            color: white;
+            padding: 14px 22px;
+            border-radius: 12px;
+            margin: 30px 0 18px;
+            font-size: 1.15rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* ===== QUESTÕES ===== */
+        .questao {
+            background: white;
+            border-radius: 16px;
+            padding: 22px 26px;
+            margin-bottom: 18px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid #14b8a6;
+        }
+
+        .questao-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 14px;
+            padding-bottom: 12px;
+            border-bottom: 1px dashed #e2e8f0;
+        }
+
+        .questao-titulo {
+            font-size: 1rem;
+            font-weight: 800;
+            color: #0f172a;
+            flex: 1;
+        }
+
+        .questao-pontos {
+            background: #ecfeff;
+            color: #0e7490;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .questao-enunciado {
+            font-size: 0.93rem;
+            line-height: 1.75;
+            color: #334155;
+            margin-bottom: 14px;
+        }
+
+        .questao-enunciado code {
+            background: #f1f5f9;
+            color: #0e7490;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+
+        .afirmativas {
+            background: #f8fafc;
+            border-radius: 10px;
+            padding: 14px 18px;
+            margin: 12px 0;
+            font-size: 0.9rem;
+            line-height: 1.8;
+            color: #334155;
+        }
+
+        .afirmativas p { margin-bottom: 6px; }
+        .afirmativas p:last-child { margin-bottom: 0; }
+        .afirmativas strong { color: #14b8a6; margin-right: 6px; }
+
+        /* ===== ALTERNATIVAS ===== */
+        .alternativas {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .alternativa {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .alternativa:hover:not(.desabilitada) {
+            border-color: #14b8a6;
+            background: #f0fdfa;
+            transform: translateX(3px);
+        }
+
+        .alternativa input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: #14b8a6;
+            flex-shrink: 0;
+        }
+
+        .alternativa label {
+            font-size: 0.92rem;
+            cursor: pointer;
+            color: #334155;
+            flex: 1;
+            line-height: 1.5;
+        }
+
+        .alternativa.correta { background: #dcfce7; border-color: #16a34a; }
+        .alternativa.correta label { color: #14532d; font-weight: 700; }
+        .alternativa.incorreta { background: #fee2e2; border-color: #dc2626; }
+        .alternativa.incorreta label { color: #7f1d1d; }
+        .alternativa.desabilitada { cursor: default; opacity: 0.85; }
+
+        /* ===== ABERTAS ===== */
+        .campo-aberto {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .campo-aberto textarea {
+            width: 100%;
+            min-height: 90px;
+            padding: 12px 14px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 0.92rem;
+            line-height: 1.6;
+            color: #334155;
+            resize: vertical;
+        }
+
+        .campo-aberto textarea:focus {
+            outline: none;
+            border-color: #14b8a6;
+            box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.12);
+        }
+
+        .contador-linhas {
+            font-size: 0.72rem;
+            color: #94a3b8;
+            text-align: right;
+            font-style: italic;
+        }
+
+        /* ===== GABARITO / SUGESTÕES ===== */
+        .gabarito-box {
+            display: none;
+            background: #f0fdfa;
+            border: 2px solid #14b8a6;
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-top: 16px;
+            font-size: 0.88rem;
+            line-height: 1.7;
+            color: #0f766e;
+        }
+
+        .gabarito-box.show { display: block; }
+
+        .gabarito-box .tag-correta {
+            display: inline-block;
+            background: #14b8a6;
+            color: white;
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            margin-right: 6px;
+        }
+
+        .gabarito-box .tag-errada {
+            display: inline-block;
+            background: #ef4444;
+            color: white;
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            margin-right: 6px;
+        }
+
+        /* Justificativa das objetivas */
+        .gabarito-box .justificativa {
+            background: white;
+            border-left: 4px solid #14b8a6;
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin-top: 10px;
+            font-size: 0.85rem;
+            color: #0f766e;
+            line-height: 1.7;
+        }
+
+        /* ================================================
+           SUGESTÃO DE RESPOSTA DAS ABERTAS (destacada)
+           ================================================ */
+        .gabarito-box .bloco-aberta {
+            margin-top: 10px;
+        }
+
+        .gabarito-box .bloco-aberta .titulo-sugestao {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.8rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #0369a1;
+            margin-bottom: 8px;
+        }
+
+        .gabarito-box .bloco-aberta .titulo-sugestao::before {
+            content: "";
+            display: inline-block;
+            width: 4px;
+            height: 16px;
+            background: #0ea5e9;
+            border-radius: 2px;
+        }
+
+        .gabarito-box .sugestao-resposta {
+            background: white;
+            border-left: 4px solid #0ea5e9;
+            border-radius: 8px;
+            padding: 14px 18px;
+            font-size: 0.9rem;
+            color: #0c4a6e;
+            line-height: 1.8;
+            font-style: italic;
+        }
+
+        .gabarito-box .sugestao-resposta::before {
+            content: "💡 ";
+            font-style: normal;
+            font-weight: 700;
+        }
+
+        /* Resposta do aluno (para comparar) */
+        .gabarito-box .resposta-aluno {
+            background: #fffbeb;
+            border-left: 4px solid #f59e0b;
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin-top: 10px;
+            font-size: 0.85rem;
+            color: #78350f;
+            line-height: 1.7;
+        }
+
+        .gabarito-box .resposta-aluno strong {
+            color: #b45309;
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+
+        /* ===== BOTÕES ===== */
+        .acoes { text-align: center; margin: 30px 0; }
+
+        .btn {
+            background: linear-gradient(135deg, #14b8a6, #0ea5e9);
+            color: white;
+            border: none;
+            padding: 14px 34px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 800;
+            font-family: inherit;
+            margin: 6px;
+            transition: 0.2s;
+            box-shadow: 0 6px 20px rgba(20, 184, 166, 0.35);
+        }
+
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 26px rgba(20, 184, 166, 0.5); }
+        .btn:disabled { background: #cbd5e1; cursor: not-allowed; box-shadow: none; transform: none; }
+        .btn-secondary { background: linear-gradient(135deg, #64748b, #475569); }
+        .btn-imprimir { background: linear-gradient(135deg, #10b981, #059669); }
+
+        /* ===== RESULTADO FINAL ===== */
+        .resultado-final {
+            display: none;
+            background: white;
+            border-radius: 20px;
+            padding: 30px 26px;
+            margin-top: 30px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+            border: 3px solid #14b8a6;
+            text-align: center;
+        }
+
+        .resultado-final.show { display: block; }
+
+        .resultado-final h2 {
+            color: #0f766e;
+            font-size: 1.4rem;
+            margin-bottom: 14px;
+        }
+
+        .nota-final {
+            font-size: 3.4rem;
+            font-weight: 900;
+            color: #14b8a6;
+            margin: 10px 0;
+        }
+
+        .nota-descricao {
+            color: #64748b;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        .resultado-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .resultado-item {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 16px;
+        }
+
+        .resultado-item .numero {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: #14b8a6;
+        }
+
+        .resultado-item .rotulo {
+            font-size: 0.8rem;
+            color: #64748b;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            margin-top: 4px;
+        }
+
+        .mensagem-final {
+            background: #f0fdfa;
+            border-left: 5px solid #14b8a6;
+            border-radius: 10px;
+            padding: 14px 20px;
+            margin-top: 20px;
+            font-size: 0.95rem;
+            color: #0f766e;
+            line-height: 1.7;
+            text-align: left;
+        }
+
+        /* ================================================
+           CONSOLIDADO DE ESTUDO (sugestões das abertas)
+           ================================================ */
+        .consolidado-estudo {
+            margin-top: 26px;
+            text-align: left;
+        }
+
+        .consolidado-estudo h3 {
+            color: #0f766e;
+            font-size: 1.1rem;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding-bottom: 10px;
+            border-bottom: 2px dashed #14b8a6;
+        }
+
+        .consolidado-item {
+            background: #f0fdfa;
+            border: 2px solid #14b8a6;
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-bottom: 12px;
+        }
+
+        .consolidado-item .num {
+            display: inline-block;
+            background: #14b8a6;
+            color: white;
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .consolidado-item .pergunta {
+            font-weight: 700;
+            color: #0f172a;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+
+        .consolidado-item .sugestao {
+            background: white;
+            border-left: 4px solid #0ea5e9;
+            border-radius: 8px;
+            padding: 12px 16px;
+            font-size: 0.88rem;
+            color: #0c4a6e;
+            line-height: 1.75;
+            font-style: italic;
+        }
+
+        .consolidado-item .sugestao::before {
+            content: "💡 Sugestão de resposta: ";
+            font-style: normal;
+            font-weight: 800;
+            color: #0369a1;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer-card {
+            background: white;
+            border-radius: 20px;
+            padding: 26px;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .destaque-footer {
+            background: #fff3cd;
+            padding: 14px 18px;
+            border-radius: 12px;
+            border-left: 5px solid #ffc107;
+            margin-bottom: 18px;
+            font-size: 0.9rem;
+            color: #856404;
+            line-height: 1.6;
+            text-align: left;
+        }
+
+        .footer-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 18px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #2c3e50;
+            transition: all 0.3s;
+            border: 2px solid #28a745;
+            max-width: 480px;
+            margin: 0 auto;
+            font-size: 0.95rem;
+        }
+
+        .footer-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(40, 167, 69, 0.2);
+            background: #d4edda;
+        }
+
+        /* ===== RESPONSIVO ===== */
+        @media (max-width: 600px) {
+            body { padding: 16px 8px; }
+            .header { padding: 22px 16px; }
+            .header h1 { font-size: 1.3rem; }
+            .questao { padding: 16px 18px; }
+            .questao-header { flex-direction: column; gap: 6px; }
+            .linha-aluno { grid-template-columns: 1fr; }
+            .secao-titulo { font-size: 0.98rem; padding: 12px 16px; }
+            .nota-final { font-size: 2.6rem; }
+            .btn { padding: 12px 22px; font-size: 0.9rem; }
+        }
+
+        /* ===== IMPRESSÃO ===== */
+        @media print {
+            body { background: white; padding: 0; }
+            .btn, .no-print, .acoes { display: none !important; }
+            .questao { box-shadow: none; border: 1px solid #cbd5e1; page-break-inside: avoid; }
+            .gabarito-box { display: block !important; }
+            .resultado-final { display: block !important; }
+            .consolidado-estudo { display: block !important; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- HEADER -->
+    <header class="header">
+        <h1>📝 AVALIAÇÃO DE <span>PROGRAMAÇÃO MOBILE</span></h1>
+        <p>Fundamentos de Interface, Arquitetura e Lógica — Nível Iniciante</p>
+        <div class="badge-group">
+            <span class="badge">🎯 10 Questões</span>
+            <span class="badge">⏱️ 40 minutos</span>
+            <span class="badge">📊 Nota: 0,0 a 10,0</span>
+            <span class="badge">📱 Mobile &amp; Web</span>
+        </div>
+    </header>
+
+    <!-- CABEÇALHO DA PROVA -->
+    <div class="cabecalho-prova">
+        <div class="linha-aluno">
+            <div class="campo">
+                <label for="nomeAluno">Aluno(a)</label>
+                <input type="text" id="nomeAluno" placeholder="Digite seu nome completo">
+            </div>
+            <div class="campo">
+                <label for="turmaAluno">Turma / Disciplina</label>
+                <input type="text" id="turmaAluno" placeholder="Programação Mobile">
+            </div>
+        </div>
+        <div class="linha-aluno">
+            <div class="campo">
+                <label for="dataProva">Data</label>
+                <input type="date" id="dataProva">
+            </div>
+            <div class="campo">
+                <label for="notaAluno">Nota</label>
+                <input type="text" id="notaAluno" placeholder="A preencher" readonly="">
+            </div>
+        </div>
+    </div>
+
+    <!-- INSTRUÇÕES -->
+    <div class="instrucoes">
+        📌 <strong>Instruções:</strong> Leia com atenção cada questão antes de responder.
+        Para as questões objetivas, marque apenas <strong>uma alternativa</strong>.
+        Nas questões abertas, responda de forma clara e objetiva (máximo de 3 linhas).
+        Ao final, clique em <strong>"Verificar Respostas"</strong> — todas as questões precisam estar respondidas.
+        <strong>As sugestões de resposta das questões abertas aparecerão após a correção</strong>, junto com o gabarito.
+    </div>
+
+    <!-- ============================================================
+         PARTE 1 — V/F
+         ============================================================ -->
+    <div class="secao-titulo">🔀 PARTE 1 · Questões de Verdadeiro (V) ou Falso (F) com Sequência</div>
+
+    <!-- Q1 -->
+    <div class="questao" id="q1">
+        <div class="questao-header">
+            <div class="questao-titulo">Questão 1 — HTML, CSS e JavaScript</div>
+            <div class="questao-pontos">1,0 ponto</div>
+        </div>
+        <div class="questao-enunciado">
+            Analise as afirmativas a seguir sobre as responsabilidades das tecnologias no desenvolvimento de aplicações web/mobile (HTML, CSS e JavaScript):
+        </div>
+        <div class="afirmativas">
+            <p><strong>(I)</strong> O HTML é responsável por definir a estrutura e os elementos que existem na tela, como textos, títulos, botões e formulários.</p>
+            <p><strong>(II)</strong> O CSS cuida da aparência visual da aplicação, definindo estilos como cores, fontes, margens, bordas e dimensões.</p>
+            <p><strong>(III)</strong> O JavaScript substitui completamente o HTML e o CSS, sendo utilizado unicamente para desenhar os layouts estáticos da interface.</p>
+        </div>
+        <div class="questao-enunciado">Assinale a opção que apresenta a sequência correta de V ou F:</div>
+        <div class="alternativas">
+            <label class="alternativa desabilitada correta"><input type="radio" name="q1" value="A" disabled=""><label>a) V – V – F</label></label>
+            <label class="alternativa desabilitada"><input type="radio" name="q1" value="B" disabled=""><label>b) V – F – V</label></label>
+            <label class="alternativa desabilitada"><input type="radio" name="q1" value="C" disabled=""><label>c) F – V – V</label></label>
+            <label class="alternativa desabilitada"><input type="radio" name="q1" value="D" disabled=""><label>d) V – V – V</label></label>
+            <label class="alternativa desabilitada"><input type="radio" name="q1" value="E" disabled=""><label>e) F – F – V</label></label>
+        </div>
+        <div class="gabarito-box show" id="gab-q1">
+                <span class="tag-correta">✅ CORRETA</span> <strong>Resposta correta: A</strong>
+                <div class="justificativa">📖 <strong>Justificativa:</strong> I e II são verdadeiras. III é falsa pois o JavaScript cuida do comportamento e interatividade, não do layout estático.</div>
+            </div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="questao" id="q2">
+        <div class="questao-header">
+            <div class="questao-titulo">Questão 2 — Android e Dispositivos Móveis</div>
+            <div class="questao-pontos">1,0 ponto</div>
+        </div>
+        <div class="questao-enunciado">
+            Analise as afirmativas a seguir sobre a origem, arquitetura e recursos do ecossistema Android e dispositivos móveis:
+        </div>
+        <div class="afirmativas">
+            <p><strong>(I)</strong> A arquitetura do sistema operacional Android possui o Kernel Linux em sua camada base.</p>
+            <p><strong>(II)</strong> O runtime ART (Android Runtime) foi introduzido no Android como uma evolução da antiga máquina virtual Dalvik.</p>
+            <p><strong>(III)</strong> Dispositivos móveis não possuem capacidade de integrar sensores físicos como GPS, câmera ou acelerômetro às suas aplicações.</p>
+        </div>
+        <div class="questao-enunciado">Assinale a opção que apresenta a sequência correta de V ou F:</div>
+        <div class="alternativas">
+            <label class="alternativa desabilitada"><input type="radio" name="q2" value="A" disabled=""><label>a) F – V – F</label></label>
+            <label class="alternativa desabilitada correta"><input type="radio" name="q2" value="B" disabled=""><label>b) V – V – F</label></label>
+            <label class="alternativa desabilitada"><input type="radio" name="q2" value="C" disabled=""><label>c) V – F – V</label></label>
+            <label class="alternativa desabilitada"><input type="radio" name="q2" value="D" disabled=""><label>d) F – F – V</label></label>
+            <label class="alternativa desabilitada"><input type="radio" name="q2" value="E" disabled=""><label>e) V – V – V</label></label>
+        </div>
+        <div class="gabarito-box show" id="gab-q2">
+                <span class="tag-correta">✅ CORRETA</span> <strong>Resposta correta: B</strong>
+                <div class="justificativa">📖 <strong>Justificativa:</strong> I e II são verdadeiras. III é falsa pois aplicações móveis utilizam frequentemente sensores como GPS e câmera.</div>
+            </div>
+    </div>
+
+    <!-- ============================================================
+         PARTE 2 — MÚLTIPLA ESCOLHA
+         ============================================================ -->
+    <div class="secao-titulo">✅ PARTE 2 · Questões de Múltipla Escolha</div>
+
+    <!-- Q3 -->
+    <div class="questao" id="q3">
+        <div class="questao-header">
+            <div class="questao-titulo">Questão 3 — Manipulação de Elementos</div>
+            <div class="questao-pontos">1,0 ponto</div>
+        </div>
+        <div class="questao-enunciado">
+            No desenvolvimento de interfaces dinâmicas, qual estrutura/mecanismo é responsável por permitir que o JavaScript localize, leia, modifique e altere o conteúdo ou estilo dos elementos da tela em tempo real?
+        </div>
+        <div class="alternativas">
+            <label class="alternativa desabilitada"><input type="radio" name="q3" value="A" disabled=""><label>A) CSS Grid</label></label>
+            <label class="alternativa desabilitada correta"><input type="radio" name="q3" value="B" disabled=""><label>B) DOM (Document Object Model)</label></label>
+            <label class="alternativa desabilitada"><input type="radio" name="q3" value="C" disabled=""><label>C) Kernel Linux</label></label>
+            <label class="alternativa desabilitada"><input type="radio" name="q3" value="D" disabled=""><label>D) Arquivo AndroidManifest.xml</label></label>
+            <label class="alternativa desabilitada"><input type="radio" name="q3" value="E" disabled=""><label>E) Banco de dados Firebase</label></label>
+        </div>
+        <div class="gabarito-box show" id="gab-q3">
+                <span class="tag-correta">✅ CORRETA</span> <strong>Resposta correta: B</strong>
+                <div class="justificativa">📖 <strong>Justificativa:</strong> O Document Object Model permite ao JS localizar e manipular elementos da tela em tempo real.</div>
+            </div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="questao" id="q4">
+        <div class="questao-header">
+            <div class="questao-titulo">Questão 4 — Formulários em JavaScript</div>
+            <div class="questao-pontos">1,0 ponto</div>
+        </div>
+        <div class="questao-enunciado">
+            Ao criar formulários interativos em JavaScript, qual propriedade booleana (que retorna true ou false) é utilizada para verificar se uma caixa de seleção (<code>&lt;input type="checkbox"&gt;</code>) está marcada pelo usuário?
+        </div>
+        <div class="alternativas">
+            <label class="alternativa desabilitada"><input type="radio" name="q4" value="A" disabled=""><label>A) .value</label></label>
+            <label class="alternativa desabilitada"><input type="radio" name="q4" value="B" disabled=""><label>B) .innerText</label></label>
+            <label class="alternativa desabilitada correta"><input type="radio" name="q4" value="C" disabled=""><label>C) .checked</label></label>
+            <label class="alternativa desabilitada"><input type="radio" name="q4" value="D" disabled=""><label>D) .className</label></label>
+            <label class="alternativa desabilitada"><input type="radio" name="q4" value="E" disabled=""><label>E) .onclick</label></label>
+        </div>
+        <div class="gabarito-box show" id="gab-q4">
+                <span class="tag-correta">✅ CORRETA</span> <strong>Resposta correta: C</strong>
+                <div class="justificativa">📖 <strong>Justificativa:</strong> A propriedade .checked é booleana e indica se o checkbox está marcado (true/false).</div>
+            </div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="questao" id="q5">
+        <div class="questao-header">
+            <div class="questao-titulo">Questão 5 — Planejamento de Projeto</div>
+            <div class="questao-pontos">1,0 ponto</div>
+        </div>
+        <div class="questao-enunciado">
+            Durante a fase de planejamento e estruturação de um projeto mobile (antes da escrita do código), qual ferramenta/esboço visual é utilizado para rascunhar o layout e a hierarquia da interface?
+        </div>
+        <div class="alternativas">
+            <label class="alternativa desabilitada"><input type="radio" name="q5" value="A" disabled=""><label>A) APK Debug</label></label>
+            <label class="alternativa desabilitada correta"><input type="radio" name="q5" value="B" disabled=""><label>B) Wireframe</label></label>
+            <label class="alternativa desabilitada"><input type="radio" name="q5" value="C" disabled=""><label>C) Motor de física</label></label>
+            <label class="alternativa desabilitada"><input type="radio" name="q5" value="D" disabled=""><label>D) Ponte Nativa Java</label></label>
+            <label class="alternativa desabilitada"><input type="radio" name="q5" value="E" disabled=""><label>E) Compilador C++</label></label>
+        </div>
+        <div class="gabarito-box show" id="gab-q5">
+                <span class="tag-correta">✅ CORRETA</span> <strong>Resposta correta: B</strong>
+                <div class="justificativa">📖 <strong>Justificativa:</strong> Wireframe é o esboço visual usado no planejamento para rascunhar o layout e a hierarquia visual.</div>
+            </div>
+    </div>
+
+    <!-- Q6 -->
+    <div class="questao" id="q6">
+        <div class="questao-header">
+            <div class="questao-titulo">Questão 6 — Low-Code vs Tradicional</div>
+            <div class="questao-pontos">1,0 ponto</div>
+        </div>
+        <div class="questao-enunciado">
+            Plataformas visuais e low-code (como App Inventor, Kodular e Thunkable) permitem criar aplicativos arrastando componentes. No paralelo entre o desenvolvimento visual e o desenvolvimento tradicional, a qual elemento do desenvolvimento tradicional corresponde um <strong>bloco de evento</strong> (ex: evento de clique)?
+        </div>
+        <div class="alternativas">
+            <label class="alternativa desabilitada"><input type="radio" name="q6" value="A" disabled=""><label>A) Propriedade CSS</label></label>
+            <label class="alternativa desabilitada"><input type="radio" name="q6" value="B" disabled=""><label>B) Elemento HTML puro</label></label>
+            <label class="alternativa desabilitada correta"><input type="radio" name="q6" value="C" disabled=""><label>C) Manipulador/Função JavaScript (como o onclick)</label></label>
+            <label class="alternativa desabilitada"><input type="radio" name="q6" value="D" disabled=""><label>D) Arquivo de manifesto do Android</label></label>
+            <label class="alternativa desabilitada"><input type="radio" name="q6" value="E" disabled=""><label>E) Sensor de aceleração</label></label>
+        </div>
+        <div class="gabarito-box show" id="gab-q6">
+                <span class="tag-correta">✅ CORRETA</span> <strong>Resposta correta: C</strong>
+                <div class="justificativa">📖 <strong>Justificativa:</strong> Blocos de eventos (como clique) correspondem às funções/manipuladores de evento (ex: onclick).</div>
+            </div>
+    </div>
+
+    <!-- ============================================================
+         PARTE 3 — ABERTAS
+         ============================================================ -->
+    <div class="secao-titulo">✍️ PARTE 3 · Questões Abertas</div>
+
+    <!-- Q7 -->
+    <div class="questao" id="q7">
+        <div class="questao-header">
+            <div class="questao-titulo">Questão 7 — Papéis de HTML e CSS</div>
+            <div class="questao-pontos">1,0 ponto</div>
+        </div>
+        <div class="questao-enunciado">
+            Explique sucintamente a diferença de papéis entre o <strong>HTML</strong> e o <strong>CSS</strong> na construção de uma interface web/mobile.
+        </div>
+        <div class="campo-aberto">
+            <textarea id="q7-resposta" placeholder="Escreva sua resposta (máximo 3 linhas)..." maxlength="400" disabled=""></textarea>
+            <div class="contador-linhas">Máximo recomendado: 3 linhas</div>
+        </div>
+        <div class="gabarito-box show" id="gab-q7">
+                <div class="bloco-aberta">
+                    <div class="titulo-sugestao">💡 Sugestão de Resposta</div>
+                    <div class="sugestao-resposta">O HTML é responsável pela estrutura da interface, definindo os elementos presentes na tela (como textos e botões). O CSS cuida da aparência visual, estilizando aspectos como cores, fontes, margens e alinhamentos.</div>
+                    <div class="resposta-aluno">
+                        <strong>📝 Sua resposta:</strong>
+                        HTML estrutura e organiza o conteúdo da página. CSS define o visual, como cores, fontes, tamanhos e posicionamento. Juntos, permitem criar interfaces organizadas, bonitas e responsivas.
+                    </div>
+                </div>
+            </div>
+    </div>
+
+    <!-- Q8 -->
+    <div class="questao" id="q8">
+        <div class="questao-header">
+            <div class="questao-titulo">Questão 8 — DOM (Document Object Model)</div>
+            <div class="questao-pontos">1,0 ponto</div>
+        </div>
+        <div class="questao-enunciado">
+            O que é o <strong>DOM (Document Object Model)</strong> e qual é a sua importância para a interatividade de um aplicativo?
+        </div>
+        <div class="campo-aberto">
+            <textarea id="q8-resposta" placeholder="Escreva sua resposta (máximo 3 linhas)..." maxlength="400" disabled=""></textarea>
+            <div class="contador-linhas">Máximo recomendado: 3 linhas</div>
+        </div>
+        <div class="gabarito-box show" id="gab-q8">
+                <div class="bloco-aberta">
+                    <div class="titulo-sugestao">💡 Sugestão de Resposta</div>
+                    <div class="sugestao-resposta">O DOM é a representação da estrutura da tela na memória que permite ao JavaScript acessar, ler e alterar elementos dinamicamente. Ele é essencial para redefinir textos, cores e conteúdos em resposta às ações do usuário.</div>
+                    <div class="resposta-aluno">
+                        <strong>📝 Sua resposta:</strong>
+                        O DOM é a representação da estrutura HTML de uma página em forma de árvore de elementos. Ele permite que o JavaScript acesse e altere esses elementos. Assim, possibilita criar interações e tornar o aplicativo mais dinâmico.
+                    </div>
+                </div>
+            </div>
+    </div>
+
+    <!-- Q9 -->
+    <div class="questao" id="q9">
+        <div class="questao-header">
+            <div class="questao-titulo">Questão 9 — Wireframe</div>
+            <div class="questao-pontos">1,0 ponto</div>
+        </div>
+        <div class="questao-enunciado">
+            Quais são as <strong>vantagens de criar um wireframe</strong> antes de iniciar o desenvolvimento do código de um aplicativo?
+        </div>
+        <div class="campo-aberto">
+            <textarea id="q9-resposta" placeholder="Escreva sua resposta (máximo 3 linhas)..." maxlength="400" disabled=""></textarea>
+            <div class="contador-linhas">Máximo recomendado: 3 linhas</div>
+        </div>
+        <div class="gabarito-box show" id="gab-q9">
+                <div class="bloco-aberta">
+                    <div class="titulo-sugestao">💡 Sugestão de Resposta</div>
+                    <div class="sugestao-resposta">O wireframe permite planejar o layout, a hierarquia visual e a experiência do usuário (UI/UX) de forma rápida antes de programar. Isso evita retrabalho de código, reduz custos e ajuda a validar a ideia da interface previamente.</div>
+                    <div class="resposta-aluno">
+                        <strong>📝 Sua resposta:</strong>
+                        O wireframe ajuda a planejar a estrutura e a organização das telas antes da programação. Facilita identificar erros e melhorar a experiência do usuário. Também economiza tempo e reduz alterações durante o desenvolvimento.
+                    </div>
+                </div>
+            </div>
+    </div>
+
+    <!-- Q10 -->
+    <div class="questao" id="q10">
+        <div class="questao-header">
+            <div class="questao-titulo">Questão 10 — Sensores em Dispositivos Móveis</div>
+            <div class="questao-pontos">1,0 ponto</div>
+        </div>
+        <div class="questao-enunciado">
+            De que maneira os <strong>sensores de um dispositivo móvel</strong> (como GPS ou câmera) podem agregar valor a um aplicativo? Dê um exemplo prático.
+        </div>
+        <div class="campo-aberto">
+            <textarea id="q10-resposta" placeholder="Escreva sua resposta (máximo 3 linhas)..." maxlength="400" disabled=""></textarea>
+            <div class="contador-linhas">Máximo recomendado: 3 linhas</div>
+        </div>
+        <div class="gabarito-box show" id="gab-q10">
+                <div class="bloco-aberta">
+                    <div class="titulo-sugestao">💡 Sugestão de Resposta</div>
+                    <div class="sugestao-resposta">Os sensores conectam a aplicação ao ambiente físico do usuário, tornando-a mais inteligente e funcional. Por exemplo, o GPS pode ser usado para calcular rotas de entrega e a câmera para leitura de códigos de barras ou QR Codes.</div>
+                    <div class="resposta-aluno">
+                        <strong>📝 Sua resposta:</strong>
+                        Os sensores permitem que o aplicativo utilize recursos do dispositivo para oferecer funções mais úteis e interativas. Por exemplo, o GPS pode ser usado em aplicativos de mapas para indicar a localização do usuário. A câmera também pode ser usada para tirar fotos ou ler QR Codes.
+                    </div>
+                </div>
+            </div>
+    </div>
+
+    <!-- BOTÕES -->
+    <div class="acoes no-print">
+        <button class="btn" id="btnVerificar" onclick="verificarRespostas()" disabled="">✅ Prova corrigida</button>
+        <button class="btn btn-secondary" onclick="limparProva()">🔄 Limpar Respostas</button>
+    </div>
+
+    <!-- ============================================================
+         RESULTADO FINAL
+         ============================================================ -->
+    <div class="resultado-final show" id="resultadoFinal">
+        <h2>📊 Relatório de Desempenho</h2>
+        <div class="nota-final" id="notaFinal">10,0</div>
+        <div class="nota-descricao">Nota final da avaliação (0,0 a 10,0)</div>
+
+        <div class="resultado-grid">
+            <div class="resultado-item">
+                <div class="numero" id="acertosObjetivas">6/6</div>
+                <div class="rotulo">Objetivas</div>
+            </div>
+            <div class="resultado-item">
+                <div class="numero" id="respondidasAbertas">4/4</div>
+                <div class="rotulo">Abertas Preenchidas</div>
+            </div>
+            <div class="resultado-item">
+                <div class="numero" id="percentualTotal">100%</div>
+                <div class="rotulo">Aproveitamento</div>
+            </div>
+        </div>
+
+        <div class="mensagem-final" id="mensagemFinal">🏆 <strong>Excelente!</strong> Você demonstrou domínio completo dos fundamentos de Programação Mobile. Continue assim!</div>
+
+        <!-- CONSOLIDADO DE ESTUDO -->
+        <div class="consolidado-estudo" id="consolidadoEstudo">
+            <h3>💡 Sugestões de Resposta — Questões Abertas</h3>
+            <div id="consolidadoLista">
+                <div class="consolidado-item">
+                    <span class="num">Questão 7</span>
+                    <div class="pergunta">Explique a diferença de papéis entre HTML e CSS.</div>
+                    <div class="sugestao">O HTML é responsável pela estrutura da interface, definindo os elementos presentes na tela (como textos e botões). O CSS cuida da aparência visual, estilizando aspectos como cores, fontes, margens e alinhamentos.</div>
+                    <div class="resposta-aluno" style="margin-top:10px; padding:10px 14px; background:#fffbeb; border-left:4px solid #f59e0b; border-radius:8px; font-size:0.85rem; color:#78350f; line-height:1.6;">
+                        <strong style="display:block; font-size:0.72rem; text-transform:uppercase; letter-spacing:1px; margin-bottom:4px; color:#b45309;">📝 Sua resposta:</strong>
+                        HTML estrutura e organiza o conteúdo da página. CSS define o visual, como cores, fontes, tamanhos e posicionamento. Juntos, permitem criar interfaces organizadas, bonitas e responsivas.
+                    </div>
+                </div>
+            
+                <div class="consolidado-item">
+                    <span class="num">Questão 8</span>
+                    <div class="pergunta">O que é o DOM e qual sua importância?</div>
+                    <div class="sugestao">O DOM é a representação da estrutura da tela na memória que permite ao JavaScript acessar, ler e alterar elementos dinamicamente. Ele é essencial para redefinir textos, cores e conteúdos em resposta às ações do usuário.</div>
+                    <div class="resposta-aluno" style="margin-top:10px; padding:10px 14px; background:#fffbeb; border-left:4px solid #f59e0b; border-radius:8px; font-size:0.85rem; color:#78350f; line-height:1.6;">
+                        <strong style="display:block; font-size:0.72rem; text-transform:uppercase; letter-spacing:1px; margin-bottom:4px; color:#b45309;">📝 Sua resposta:</strong>
+                        O DOM é a representação da estrutura HTML de uma página em forma de árvore de elementos. Ele permite que o JavaScript acesse e altere esses elementos. Assim, possibilita criar interações e tornar o aplicativo mais dinâmico.
+                    </div>
+                </div>
+            
+                <div class="consolidado-item">
+                    <span class="num">Questão 9</span>
+                    <div class="pergunta">Quais as vantagens de um wireframe?</div>
+                    <div class="sugestao">O wireframe permite planejar o layout, a hierarquia visual e a experiência do usuário (UI/UX) de forma rápida antes de programar. Isso evita retrabalho de código, reduz custos e ajuda a validar a ideia da interface previamente.</div>
+                    <div class="resposta-aluno" style="margin-top:10px; padding:10px 14px; background:#fffbeb; border-left:4px solid #f59e0b; border-radius:8px; font-size:0.85rem; color:#78350f; line-height:1.6;">
+                        <strong style="display:block; font-size:0.72rem; text-transform:uppercase; letter-spacing:1px; margin-bottom:4px; color:#b45309;">📝 Sua resposta:</strong>
+                        O wireframe ajuda a planejar a estrutura e a organização das telas antes da programação. Facilita identificar erros e melhorar a experiência do usuário. Também economiza tempo e reduz alterações durante o desenvolvimento.
+                    </div>
+                </div>
+            
+                <div class="consolidado-item">
+                    <span class="num">Questão 10</span>
+                    <div class="pergunta">Como os sensores agregam valor a um app?</div>
+                    <div class="sugestao">Os sensores conectam a aplicação ao ambiente físico do usuário, tornando-a mais inteligente e funcional. Por exemplo, o GPS pode ser usado para calcular rotas de entrega e a câmera para leitura de códigos de barras ou QR Codes.</div>
+                    <div class="resposta-aluno" style="margin-top:10px; padding:10px 14px; background:#fffbeb; border-left:4px solid #f59e0b; border-radius:8px; font-size:0.85rem; color:#78350f; line-height:1.6;">
+                        <strong style="display:block; font-size:0.72rem; text-transform:uppercase; letter-spacing:1px; margin-bottom:4px; color:#b45309;">📝 Sua resposta:</strong>
+                        Os sensores permitem que o aplicativo utilize recursos do dispositivo para oferecer funções mais úteis e interativas. Por exemplo, o GPS pode ser usado em aplicativos de mapas para indicar a localização do usuário. A câmera também pode ser usada para tirar fotos ou ler QR Codes.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="acoes" style="margin-top:22px;">
+            <button class="btn btn-imprimir" onclick="window.print()">🖨️ Imprimir / Salvar PDF</button>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer-card no-print">
+        <div class="destaque-footer">
+            📌 <strong>ATENÇÃO ALUNOS:</strong> Após verificar suas respostas, salve o relatório em PDF (ou imprima) e envie pelo formulário oficial junto com o relatório da aula.
+        </div>
+
+        <h4 style="margin-bottom: 12px; color: #0f766e;">📋 Formulário Oficial de Entrega</h4>
+
+        <a href="https://forms.gle/zbUB57A4FteUDsKSA" target="_blank" class="footer-link">
+            <span style="font-size:1.4rem;">📝</span>
+            <div style="text-align:left; flex:1;">
+                <strong>Envio de Relatório da Avaliação</strong>
+                <small style="display:block; color:#64748b; font-size:0.75rem;">Anexar PDF da prova + respostas</small>
+            </div>
+            <span style="font-size:1.2rem; font-weight:bold; color:#28a745;">→</span>
+        </a>
+
+        <p style="margin-top: 18px; font-size: 0.75rem; color: #64748b;">
+            📱 Avaliação de Programação Mobile • Nível Iniciante • 2026
+        </p>
+    </footer>
+
+</div>
+
+<script>
+    /* ============================================================
+       GABARITO E SUGESTÕES
+       ============================================================ */
+    const GABARITO = {
+        q1: {
+            correta: 'A',
+            justificativa: 'I e II são verdadeiras. III é falsa pois o JavaScript cuida do comportamento e interatividade, não do layout estático.'
+        },
+        q2: {
+            correta: 'B',
+            justificativa: 'I e II são verdadeiras. III é falsa pois aplicações móveis utilizam frequentemente sensores como GPS e câmera.'
+        },
+        q3: {
+            correta: 'B',
+            justificativa: 'O Document Object Model permite ao JS localizar e manipular elementos da tela em tempo real.'
+        },
+        q4: {
+            correta: 'C',
+            justificativa: 'A propriedade .checked é booleana e indica se o checkbox está marcado (true/false).'
+        },
+        q5: {
+            correta: 'B',
+            justificativa: 'Wireframe é o esboço visual usado no planejamento para rascunhar o layout e a hierarquia visual.'
+        },
+        q6: {
+            correta: 'C',
+            justificativa: 'Blocos de eventos (como clique) correspondem às funções/manipuladores de evento (ex: onclick).'
+        },
+        q7: {
+            pergunta: 'Explique a diferença de papéis entre HTML e CSS.',
+            sugestao: 'O HTML é responsável pela estrutura da interface, definindo os elementos presentes na tela (como textos e botões). O CSS cuida da aparência visual, estilizando aspectos como cores, fontes, margens e alinhamentos.'
+        },
+        q8: {
+            pergunta: 'O que é o DOM e qual sua importância?',
+            sugestao: 'O DOM é a representação da estrutura da tela na memória que permite ao JavaScript acessar, ler e alterar elementos dinamicamente. Ele é essencial para redefinir textos, cores e conteúdos em resposta às ações do usuário.'
+        },
+        q9: {
+            pergunta: 'Quais as vantagens de um wireframe?',
+            sugestao: 'O wireframe permite planejar o layout, a hierarquia visual e a experiência do usuário (UI/UX) de forma rápida antes de programar. Isso evita retrabalho de código, reduz custos e ajuda a validar a ideia da interface previamente.'
+        },
+        q10: {
+            pergunta: 'Como os sensores agregam valor a um app?',
+            sugestao: 'Os sensores conectam a aplicação ao ambiente físico do usuário, tornando-a mais inteligente e funcional. Por exemplo, o GPS pode ser usado para calcular rotas de entrega e a câmera para leitura de códigos de barras ou QR Codes.'
+        }
+    };
+
+    /* ============================================================
+       VERIFICAR RESPOSTAS
+       ============================================================ */
+    function verificarRespostas() {
+        // 1) Validar objetivas
+        const objetivas = ['q1', 'q2', 'q3', 'q4', 'q5', 'q6'];
+        let faltando = [];
+        objetivas.forEach(id => {
+            if (!document.querySelector(`input[name="${id}"]:checked`)) {
+                faltando.push(id.replace('q', ''));
+            }
+        });
+
+        // 2) Validar abertas
+        const abertas = ['q7', 'q8', 'q9', 'q10'];
+        abertas.forEach(id => {
+            const txt = document.getElementById(id + '-resposta').value.trim();
+            if (txt.length < 5) {
+                faltando.push(id.replace('q', ''));
+            }
+        });
+
+        if (faltando.length > 0) {
+            alert('⚠️ Responda todas as questões antes de verificar!\n\nFaltando: ' + faltando.map(n => 'Q' + n).join(', '));
+            return;
+        }
+
+        // 3) Corrigir objetivas
+        let acertosObj = 0;
+        objetivas.forEach(id => {
+            const selecionada = document.querySelector(`input[name="${id}"]:checked`).value;
+            const correta = GABARITO[id].correta;
+            const acertou = selecionada === correta;
+
+            if (acertou) acertosObj++;
+
+            const alternativas = document.querySelectorAll(`#${id} .alternativa`);
+            alternativas.forEach(alt => {
+                const input = alt.querySelector('input');
+                const valorAlt = input.value;
+
+                input.disabled = true;
+                alt.classList.add('desabilitada');
+
+                if (valorAlt === correta) {
+                    alt.classList.add('correta');
+                } else if (valorAlt === selecionada && !acertou) {
+                    alt.classList.add('incorreta');
+                }
+            });
+
+            const box = document.getElementById('gab-' + id);
+            const tag = acertou
+                ? '<span class="tag-correta">✅ CORRETA</span>'
+                : '<span class="tag-errada">❌ INCORRETA</span>';
+            box.innerHTML = `
+                ${tag} <strong>Resposta correta: ${correta}</strong>
+                <div class="justificativa">📖 <strong>Justificativa:</strong> ${GABARITO[id].justificativa}</div>
+            `;
+            box.classList.add('show');
+        });
+
+        // 4) Corrigir abertas (mostrar sugestão + resposta do aluno para comparar)
+        let abertasPreenchidas = 0;
+        abertas.forEach(id => {
+            const txt = document.getElementById(id + '-resposta').value.trim();
+            if (txt.length >= 20) abertasPreenchidas++;
+
+            const box = document.getElementById('gab-' + id);
+            box.innerHTML = `
+                <div class="bloco-aberta">
+                    <div class="titulo-sugestao">💡 Sugestão de Resposta</div>
+                    <div class="sugestao-resposta">${GABARITO[id].sugestao}</div>
+                    <div class="resposta-aluno">
+                        <strong>📝 Sua resposta:</strong>
+                        ${txt || '<em>(não preenchida)</em>'}
+                    </div>
+                </div>
+            `;
+            box.classList.add('show');
+
+            // Bloquear textarea
+            document.getElementById(id + '-resposta').disabled = true;
+        });
+
+        // 5) Calcular nota final
+        const notaObjetivas = acertosObj * 1.0;
+        const notaAbertas = abertasPreenchidas * 1.0;
+        const notaFinal = notaObjetivas + notaAbertas;
+        const percentual = Math.round((notaFinal / 10) * 100);
+
+        // 6) Exibir relatório final
+        document.getElementById('notaFinal').innerText = notaFinal.toFixed(1).replace('.', ',');
+        document.getElementById('acertosObjetivas').innerText = acertosObj + '/6';
+        document.getElementById('respondidasAbertas').innerText = abertasPreenchidas + '/4';
+        document.getElementById('percentualTotal').innerText = percentual + '%';
+
+        // 7) Mensagem final
+        let mensagem = '';
+        if (percentual >= 90) {
+            mensagem = '🏆 <strong>Excelente!</strong> Você demonstrou domínio completo dos fundamentos de Programação Mobile. Continue assim!';
+        } else if (percentual >= 70) {
+            mensagem = '👏 <strong>Muito bom!</strong> Você compreendeu os principais conceitos. Revise os pontos que errou para consolidar ainda mais o aprendizado.';
+        } else if (percentual >= 50) {
+            mensagem = '📚 <strong>Bom começo!</strong> Você já domina alguns conceitos, mas é importante revisar os temas em que teve dificuldade. Consulte o material didático novamente.';
+        } else {
+            mensagem = '💡 <strong>Atenção!</strong> Recomendamos revisar o conteúdo teórico com calma, refazer os laboratórios práticos e tentar novamente. Não desanime — a prática leva à perfeição!';
+        }
+        document.getElementById('mensagemFinal').innerHTML = mensagem;
+
+        // 8) CONSOLIDADO DE ESTUDO (sugestões das abertas em destaque)
+        let consolidadoHTML = '';
+        abertas.forEach((id, idx) => {
+            const respostaAluno = document.getElementById(id + '-resposta').value.trim();
+            consolidadoHTML += `
+                <div class="consolidado-item">
+                    <span class="num">Questão ${id.replace('q', '')}</span>
+                    <div class="pergunta">${GABARITO[id].pergunta}</div>
+                    <div class="sugestao">${GABARITO[id].sugestao}</div>
+                    <div class="resposta-aluno" style="margin-top:10px; padding:10px 14px; background:#fffbeb; border-left:4px solid #f59e0b; border-radius:8px; font-size:0.85rem; color:#78350f; line-height:1.6;">
+                        <strong style="display:block; font-size:0.72rem; text-transform:uppercase; letter-spacing:1px; margin-bottom:4px; color:#b45309;">📝 Sua resposta:</strong>
+                        ${respostaAluno || '<em>(não preenchida)</em>'}
+                    </div>
+                </div>
+            `;
+        });
+        document.getElementById('consolidadoLista').innerHTML = consolidadoHTML;
+
+        // 9) Nota no cabeçalho
+        document.getElementById('notaAluno').value = notaFinal.toFixed(1).replace('.', ',') + ' / 10,0';
+
+        // 10) Exibir relatório
+        document.getElementById('resultadoFinal').classList.add('show');
+        document.getElementById('resultadoFinal').scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+        // 11) Desabilitar botão verificar
+        document.getElementById('btnVerificar').disabled = true;
+        document.getElementById('btnVerificar').innerText = '✅ Prova corrigida';
+    }
+
+    /* ============================================================
+       LIMPAR PROVA
+       ============================================================ */
+    function limparProva() {
+        if (!confirm('Tem certeza que deseja limpar todas as respostas?')) return;
+
+        document.querySelectorAll('input[type="radio"]').forEach(r => {
+            r.checked = false;
+            r.disabled = false;
+        });
+
+        document.querySelectorAll('textarea').forEach(t => {
+            t.value = '';
+            t.disabled = false;
+        });
+
+        document.querySelectorAll('.alternativa').forEach(a => {
+            a.classList.remove('correta', 'incorreta', 'desabilitada');
+        });
+
+        document.querySelectorAll('.gabarito-box').forEach(g => {
+            g.classList.remove('show');
+            g.innerHTML = '';
+        });
+
+        document.getElementById('resultadoFinal').classList.remove('show');
+        document.getElementById('consolidadoLista').innerHTML = '';
+
+        const btn = document.getElementById('btnVerificar');
+        btn.disabled = false;
+        btn.innerText = '✅ Verificar Respostas';
+
+        document.getElementById('notaAluno').value = '';
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /* ============================================================
+       INICIALIZAÇÃO
+       ============================================================ */
+    document.addEventListener('DOMContentLoaded', () => {
+        // Data de hoje
+        const hoje = new Date();
+        const ano = hoje.getFullYear();
+        const mes = String(hoje.getMonth() + 1).padStart(2, '0');
+        const dia = String(hoje.getDate()).padStart(2, '0');
+        document.getElementById('dataProva').value = `${ano}-${mes}-${dia}`;
+
+        // Clique na alternativa marca o radio
+        document.querySelectorAll('.alternativa').forEach(alt => {
+            alt.addEventListener('click', function(e) {
+                if (this.classList.contains('desabilitada')) return;
+                const input = this.querySelector('input[type="radio"]');
+                if (input && !input.disabled) {
+                    input.checked = true;
+                }
+            });
+        });
+    });
+</script>
+
+
+</body></html>

@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<!-- saved from url=(0048)https://almeida-cma.github.io/mob03/desafio.html -->
+<html lang="pt-BR"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🛍️ LojaExpress Pro - Manual do Sistema &amp; Desafio Prático</title>
+    <style>
+        /* ============================================================
+           RESET & DESIGN SYSTEM
+           ============================================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f2027 100%);
+            padding: 20px 14px;
+            min-height: 100vh;
+            color: #1e293b;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* ============================================================
+           HEADER
+           ============================================================ */
+        .header {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #ec4899 100%);
+            border-radius: 20px;
+            padding: 35px 25px;
+            margin-bottom: 25px;
+            text-align: center;
+            color: #fff;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+        }
+
+        .header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .header h1 span { color: #fef08a; }
+
+        .header p {
+            opacity: 0.95;
+            font-size: 1.05rem;
+            max-width: 850px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .badge-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            margin-top: 18px;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px 14px;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #fff;
+            backdrop-filter: blur(5px);
+        }
+
+        /* ============================================================
+           CARDS DE CONTEÚDO
+           ============================================================ */
+        .card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 28px;
+            margin-bottom: 22px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .card h2 {
+            color: #4f46e5;
+            margin-bottom: 14px;
+            border-left: 5px solid #ec4899;
+            padding-left: 12px;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card h3 {
+            color: #1e1b4b;
+            margin: 20px 0 10px 0;
+            font-size: 1.15rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .card p {
+            color: #334155;
+            line-height: 1.75;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+        }
+
+        .card ul, .card ol {
+            color: #334155;
+            line-height: 1.8;
+            margin: 8px 0 14px 25px;
+            font-size: 0.95rem;
+        }
+
+        /* Highlight Boxes */
+        .highlight-box {
+            padding: 14px 18px;
+            border-radius: 12px;
+            margin: 14px 0;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .highlight-box.purple { background: #f3e8ff; border-left: 5px solid #9333ea; color: #6b21a8; }
+        .highlight-box.blue   { background: #e0f2fe; border-left: 5px solid #0284c7; color: #0369a1; }
+        .highlight-box.green  { background: #dcfce7; border-left: 5px solid #16a34a; color: #15803d; }
+        .highlight-box.yellow { background: #fffbe8; border-left: 5px solid #f59e0b; color: #854d0e; }
+        .highlight-box.pink   { background: #fdf2f8; border-left: 5px solid #ec4899; color: #9d174d; }
+
+        .highlight-box code, .question code {
+            background: #f1f5f9;
+            color: #4f46e5;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-weight: 700;
+            font-size: 0.88rem;
+            border: 1px solid #e2e8f0;
+        }
+
+        /* Grids de Recursos */
+        .grid-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 14px;
+            margin: 16px 0;
+        }
+
+        .feature-card {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 16px;
+            transition: 0.2s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-2px);
+            border-color: #4f46e5;
+            box-shadow: 0 4px 14px rgba(79, 70, 229, 0.1);
+        }
+
+        .feature-card h4 {
+            font-size: 1.05rem;
+            color: #1e1b4b;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .feature-card p {
+            font-size: 0.85rem;
+            color: #64748b;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        /* Tabela de Banco Relacional */
+        .schema-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.88rem;
+            margin: 14px 0;
+        }
+
+        .schema-table th {
+            background: #0f172a;
+            color: white;
+            padding: 10px 14px;
+            text-align: left;
+        }
+
+        .schema-table td {
+            padding: 10px 14px;
+            border-bottom: 1px solid #e2e8f0;
+            color: #334155;
+        }
+
+        .schema-table tr:hover td { background: #f8fafc; }
+
+        /* Blocos de Missão Prática */
+        .missao-box {
+            background: #fff7ed;
+            border: 2px dashed #f97316;
+            border-radius: 12px;
+            padding: 16px 18px;
+            margin: 14px 0;
+            font-size: 0.92rem;
+            color: #9a3412;
+            line-height: 1.7;
+        }
+
+        .missao-box strong { color: #c2410c; }
+
+        /* Quiz */
+        .question {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-bottom: 16px;
+            border-left: 4px solid #4f46e5;
+            border-top: 1px solid #e2e8f0;
+            border-right: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+            text-align: left;
+        }
+
+        .question.tf { border-left-color: #0284c7; }
+
+        .question-header {
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 0.94rem;
+            line-height: 1.5;
+        }
+
+        .question-number {
+            background: #4f46e5;
+            color: white;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 26px;
+            font-size: 12px;
+            font-weight: bold;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .question.tf .question-number { background: #0284c7; }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .options.tf {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            max-width: 320px;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            background: white;
+            border-radius: 8px;
+            border: 2px solid #e2e8f0;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .option:hover:not(.disabled) {
+            border-color: #4f46e5;
+            background: #f5f3ff;
+        }
+
+        .option input[type="radio"] { width: 16px; height: 16px; cursor: pointer; flex-shrink: 0; }
+        .option label { font-size: 0.9rem; cursor: pointer; flex: 1; line-height: 1.4; color: #334155; }
+
+        .option.correct { border-color: #16a34a; background: #dcfce7; font-weight: bold; }
+        .option.wrong   { border-color: #dc2626; background: #fee2e2; }
+        .option.disabled { opacity: 0.7; cursor: default; }
+
+        .result-box {
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            border: 3px solid #4f46e5;
+            display: none;
+            margin-top: 20px;
+        }
+
+        .result-box.show { display: block; }
+        .score { font-size: 3rem; font-weight: 900; color: #4f46e5; }
+
+        .feedback-item {
+            padding: 8px 0;
+            border-bottom: 1px solid #e2e8f0;
+            text-align: left;
+            font-size: 0.88rem;
+        }
+
+        .feedback-item.correct { color: #15803d; }
+        .feedback-item.wrong   { color: #b91c1c; }
+        .feedback-item .explicacao {
+            color: #64748b;
+            font-size: 0.82rem;
+            margin-left: 22px;
+            font-style: italic;
+            margin-top: 2px;
+        }
+
+        /* Botões */
+        .btn {
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin: 4px;
+            transition: 0.2s;
+        }
+
+        .btn:hover { transform: scale(1.03); box-shadow: 0 5px 15px rgba(79, 70, 229, 0.3); }
+        .btn-secondary { background: #64748b; }
+        .btn-success { background: #10b981; }
+
+        /* Footer */
+        .footer-card {
+            background: white;
+            border-radius: 20px;
+            padding: 28px;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .destaque-footer {
+            background: #fff3cd;
+            padding: 14px 18px;
+            border-radius: 12px;
+            border-left: 5px solid #ffc107;
+            margin-bottom: 18px;
+            font-size: 0.9rem;
+            color: #856404;
+            line-height: 1.6;
+        }
+
+        .footer-links {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        .footer-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 18px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #2c3e50;
+            transition: all 0.3s;
+            border: 2px solid #28a745;
+            font-size: 0.95rem;
+        }
+
+        .footer-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(40, 167, 69, 0.2);
+            background: #d4edda;
+        }
+
+        .btn-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #4f46e5;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .options.tf { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- HEADER -->
+        <header class="header">
+            <h1>🛍️ LojaExpress Pro • <span>Manual &amp; Desafio</span></h1>
+            <p>Guia Operacional Completo das Visões Cliente e Administrador, Arquitetura Relacional LocalStorage, Quiz e Projeto de Customização</p>
+            <div class="badge-group">
+                <span class="badge">👤 Visão do Cliente</span>
+                <span class="badge">🛠️ Back-Office ERP (Admin)</span>
+                <span class="badge">🗄️ Banco LocalStorage</span>
+                <span class="badge">🎨 Missão de Customização</span>
+                <span class="badge">📝 12 Questões com Gabarito</span>
+            </div>
+        </header>
+
+        <!-- ============================================================
+        SEÇÃO 1: APRESENTAÇÃO DO SISTEMA & ARQUITETURA
+        ============================================================ -->
+        <section class="card">
+            <h2>🏗️ 1. Como Funciona a Arquitetura da LojaExpress Pro?</h2>
+
+            <div class="highlight-box purple">
+                💡 <strong>O Conceito Central:</strong> O <strong>LojaExpress Pro</strong> é uma aplicação comercial completa em arquivo único (Single-Page App). Ele unifica a <strong>Loja Virtual (Visão do Cliente)</strong> com o <strong>Painel de Gestão ERP (Visão do Administrador)</strong>, compartilhando a mesma base de dados relacional gravada no <code>localStorage</code> do navegador.
+            </div>
+
+            <div class="grid-features">
+                <div class="feature-card">
+                    <h4>👤 Visão do Cliente (Storefront)</h4>
+                    <p>Catálogo com busca em tempo real, tela dedicada de detalhes com seletor de quantidade <code>[ - ] QTD [ + ]</code>, carrinho inteligente, validação de cupons e rastreamento de pedidos.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>🛠️ Visão do Administrador (ERP)</h4>
+                    <p>Dashboard de vendas em tempo real, baixa de pedidos, inclusão manual de vendas de balcão, CRUD completo de produtos, clientes, cupons de desconto e exportação/importação de JSON.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>🗄️ Banco Relacional em LocalStorage</h4>
+                    <p>Sem necessidade de servidores externos ou banco MySQL. As tabelas relacionais comunicam-se instantaneamente em tempo de execução no próprio dispositivo.</p>
+                </div>
+            </div>
+
+            <h3>📊 Esquema das Tabelas Relacionais no LocalStorage:</h3>
+            <table class="schema-table">
+                <thead>
+                    <tr>
+                        <th>Chave no LocalStorage</th>
+                        <th>Entidade / Tabela</th>
+                        <th>Campos Principais Armazenados</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>db_produtos</code></td>
+                        <td>Produtos do Catálogo</td>
+                        <td><code>id, nome, categoria, preco, estoque, img, rating, avaliacoes[]</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>db_clientes</code></td>
+                        <td>Clientes Cadastrados</td>
+                        <td><code>id, nome, email, senha, cpf, telefone, endereco, cidade</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>db_pedidos</code></td>
+                        <td>Pedidos de Venda</td>
+                        <td><code>id, clienteId, clienteNome, data, status, total, itens[]</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>db_cupons</code></td>
+                        <td>Cupons Promocionais</td>
+                        <td><code>codigo, tipo (% ou R$), valor, minPedido, expiraEm, ativo</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>db_config</code></td>
+                        <td>Configurações do Admin</td>
+                        <td><code>adminEmail, adminSenha</code></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- ============================================================
+        SEÇÃO 2: GUIA COMPLETO DA VISÃO DO CLIENTE
+        ============================================================ -->
+        <section class="card">
+            <h2>🛒 2. Guia de Funcionalidades da Visão do Cliente</h2>
+
+            <ol>
+                <li>
+                    <strong>Navegação &amp; Busca em Tempo Real:</strong>  
+                    O cliente pesquisa por nome ou filtra por categorias (*Lanches, Pizzas, Bebidas, Eletrônicos*). O catálogo filtra instantaneamente via JavaScript.
+                </li>
+                <li>
+                    <strong>Tela Dedicada de Detalhe do Produto:</strong>  
+                    Ao clicar em qualquer item, abre-se a página detalhada com foto ampliada, descrição, alerta de estoque e o <strong>seletor de quantidade <code>[ - ] QTD [ + ]</code></strong>, calculando o subtotal antes de adicionar ao carrinho.
+                </li>
+                <li>
+                    <strong>Identificação &amp; Autenticação:</strong>  
+                    O cliente pode entrar com e-mail/senha (`ana@email.com` / `123`) ou criar uma nova conta na hora. Se tentar finalizar um pedido sem login, o app abre o modal de identificação automaticamente.
+                </li>
+                <li>
+                    <strong>Carrinho de Compras com Cupons:</strong>  
+                    Permite alterar quantidades, remover itens e validar cupons configurados pelo Admin (testando se o pedido atingiu o valor mínimo e se o cupom não expirou).
+                </li>
+                <li>
+                    <strong>Checkout &amp; Baixa no Estoque:</strong>  
+                    Ao confirmar a compra, o sistema gera o pedido no <code>db_pedidos</code>, limpa o carrinho e <strong>diminui a quantidade comprada do estoque</strong> em <code>db_produtos</code>.
+                </li>
+                <li>
+                    <strong>Rastreamento &amp; Desbloqueio de Avaliação:</strong>  
+                    O cliente acompanha a timeline (*Pendente → Em Transporte → Entregue*). O formulário de avaliação por estrelas <strong>só é liberado após o Administrador marcar o pedido como Entregue</strong>!
+                </li>
+            </ol>
+        </section>
+
+        <!-- ============================================================
+        SEÇÃO 3: GUIA COMPLETO DA VISÃO DO ADMINISTRADOR
+        ============================================================ -->
+        <section class="card">
+            <h2>🛠️ 3. Guia de Funcionalidades do Painel do Administrador</h2>
+
+            <div class="highlight-box blue">
+                🔐 <strong>Credenciais Padrão do Back-Office:</strong><br>
+                • <strong>E-mail:</strong> <code>admin@loja.com</code><br>
+                • <strong>Senha Inicial:</strong> <code>admin123</code> (pode ser alterada a qualquer momento na aba *Backup &amp; Senha*).
+            </div>
+
+            <ol>
+                <li>
+                    <strong>Dashboard de Vendas:</strong> Exibe o <strong>Faturamento Total</strong>, <strong>Total de Pedidos</strong>, <strong>Ticket Médio</strong> e resumo de pedidos agrupados por status.
+                </li>
+                <li>
+                    <strong>Gestão de Pedidos &amp; Baixas:</strong> O Admin avança o status (*Pendente → Em Preparo → Em Transporte → Entregue*). A baixa como <em>"Entregue"</em> destrava o direito de avaliação do cliente.
+                </li>
+                <li>
+                    <strong>Lançamento de Pedido Manual (Balcão / Telefone):</strong> Permite ao operador selecionar um cliente cadastrado, escolher produtos, definir quantidades e lançar uma venda direta.
+                </li>
+                <li>
+                    <strong>CRUD de Produtos &amp; Estoque:</strong> Cadastro de novos lanches/eletrônicos, edição de preços, descrições e ajuste manual de estoque.
+                </li>
+                <li>
+                    <strong>CRUD de Clientes:</strong> Gestão e visualização de todos os clientes registrados.
+                </li>
+                <li>
+                    <strong>Gerenciador de Cupons com Regras de Mercado:</strong> Criação de cupons em `%` ou `R$`, estipulação de pedido mínimo (ex: R$ 30,00) e data limite de validade.
+                </li>
+                <li>
+                    <strong>Backup JSON (Exportar / Importar):</strong> Download de toda a base em arquivo <code>.json</code> e restauração completa para migração de máquinas.
+                </li>
+            </ol>
+        </section>
+
+        <!-- ============================================================
+        SEÇÃO 4: QUESTIONÁRIO OBJETIVO (12 QUESTÕES COM AUTO-CORREÇÃO)
+        ============================================================ -->
+        <section class="card" id="sec-quiz">
+            <h2>📝 4. Exercício de Fixação do Sistema (12 Questões)</h2>
+            <p>Responda às 12 questões objetivas sobre as regras de negócio e funcionamento do LojaExpress Pro. Clique em <strong>"Verificar Respostas"</strong> ao final:</p>
+
+            <!-- Q1 -->
+            <div class="question" id="q1">
+                <div class="question-header">
+                    <span class="question-number">1</span>
+                    Qual é a principal vantagem de compartilhar o `localStorage` entre a Visão do Cliente e a Visão do Administrador no LojaExpress Pro?
+                </div>
+                <div class="options">
+                    <div class="option correct disabled"><input type="radio" name="q1" value="A" disabled=""><label>Permitir que alterações feitas no Admin (como baixa de pedidos e novos produtos) reflitam instantaneamente na visão do cliente sem depender de servidor externo</label></div>
+                    <div class="option disabled"><input type="radio" name="q1" value="B" disabled=""><label>Obrigar o cliente a formatar o celular a cada compra</label></div>
+                    <div class="option disabled"><input type="radio" name="q1" value="C" disabled=""><label>Impedir a exibição de imagens e cores na tela</label></div>
+                    <div class="option disabled"><input type="radio" name="q1" value="D" disabled=""><label>Desligar o teclado do computador</label></div>
+                </div>
+            </div>
+
+            <!-- Q2 -->
+            <div class="question" id="q2">
+                <div class="question-header">
+                    <span class="question-number">2</span>
+                    Na tela de detalhes do produto, por que o formulário de avaliação por estrelas aparece inicialmente bloqueado com aviso amarelo?
+                </div>
+                <div class="options">
+                    <div class="option correct disabled"><input type="radio" name="q2" value="A" disabled=""><label>Porque o sistema exige que o cliente tenha comprado o produto E que o Administrador tenha dado baixa no pedido como "Entregue"</label></div>
+                    <div class="option disabled"><input type="radio" name="q2" value="B" disabled=""><label>Porque o JavaScript do aplicativo travou com erro de sintaxe</label></div>
+                    <div class="option disabled"><input type="radio" name="q2" value="C" disabled=""><label>Para proibir qualquer pessoa de elogiar os produtos</label></div>
+                    <div class="option disabled"><input type="radio" name="q2" value="D" disabled=""><label>Porque o cliente precisa pagar uma taxa para avaliar</label></div>
+                </div>
+            </div>
+
+            <!-- Q3 -->
+            <div class="question" id="q3">
+                <div class="question-header">
+                    <span class="question-number">3</span>
+                    O que acontece com o estoque em `db_produtos` quando um cliente conclui com sucesso a compra de 2 unidades de um hambúrguer?
+                </div>
+                <div class="options">
+                    <div class="option correct disabled"><input type="radio" name="q3" value="A" disabled=""><label>O sistema subtrai automaticamente 2 unidades do estoque do produto no banco `db_produtos`</label></div>
+                    <div class="option disabled"><input type="radio" name="q3" value="B" disabled=""><label>O estoque é multiplicado por dois</label></div>
+                    <div class="option disabled"><input type="radio" name="q3" value="C" disabled=""><label>O produto é excluído permanentemente da loja</label></div>
+                    <div class="option disabled"><input type="radio" name="q3" value="D" disabled=""><label>O preço do produto aumenta para R$ 100,00</label></div>
+                </div>
+            </div>
+
+            <!-- Q4 -->
+            <div class="question" id="q4">
+                <div class="question-header">
+                    <span class="question-number">4</span>
+                    Na tela dedicada de detalhes do produto, qual é a função do seletor interativo `[ - ] QTD [ + ]`?
+                </div>
+                <div class="options">
+                    <div class="option correct disabled"><input type="radio" name="q4" value="A" disabled=""><label>Permitir ao cliente definir a quantidade desejada e recalcular o subtotal em tempo real antes de enviar ao carrinho</label></div>
+                    <div class="option disabled"><input type="radio" name="q4" value="B" disabled=""><label>Trocar o endereço de entrega do cliente</label></div>
+                    <div class="option disabled"><input type="radio" name="q4" value="C" disabled=""><label>Cancelar o pedido anterior</label></div>
+                    <div class="option disabled"><input type="radio" name="q4" value="D" disabled=""><label>Desligar a conexão de rede</label></div>
+                </div>
+            </div>
+
+            <!-- Q5 -->
+            <div class="question" id="q5">
+                <div class="question-header">
+                    <span class="question-number">5</span>
+                    Quais são as credenciais padrão pré-configuradas para o primeiro acesso ao Back-Office do Administrador?
+                </div>
+                <div class="options">
+                    <div class="option correct disabled"><input type="radio" name="q5" value="A" disabled=""><label>E-mail: admin@loja.com | Senha: admin123</label></div>
+                    <div class="option disabled"><input type="radio" name="q5" value="B" disabled=""><label>E-mail: cliente@loja.com | Senha: 000</label></div>
+                    <div class="option disabled"><input type="radio" name="q5" value="C" disabled=""><label>E-mail: root@root.com | Senha: root</label></div>
+                    <div class="option disabled"><input type="radio" name="q5" value="D" disabled=""><label>Qualquer e-mail sem necessidade de senha</label></div>
+                </div>
+            </div>
+
+            <!-- Q6 -->
+            <div class="question" id="q6">
+                <div class="question-header">
+                    <span class="question-number">6</span>
+                    No Dashboard de Vendas do Administrador, como o sistema calcula o indicador de **Ticket Médio**?
+                </div>
+                <div class="options">
+                    <div class="option correct disabled"><input type="radio" name="q6" value="A" disabled=""><label>Dividindo o Faturamento Total pelo número total de pedidos realizados (`Faturamento / TotalPedidos`)</label></div>
+                    <div class="option disabled"><input type="radio" name="q6" value="B" disabled=""><label>Somando a idade de todos os clientes</label></div>
+                    <div class="option disabled"><input type="radio" name="q6" value="C" disabled=""><label>Multiplicando o número de cupons por 10</label></div>
+                    <div class="option disabled"><input type="radio" name="q6" value="D" disabled=""><label>Contando quantos cliques o botão recebeu</label></div>
+                </div>
+            </div>
+
+            <!-- Q7 -->
+            <div class="question" id="q7">
+                <div class="question-header">
+                    <span class="question-number">7</span>
+                    Quais validações de regras de mercado o sistema executa ao aplicar um cupom promocional no carrinho?
+                </div>
+                <div class="options">
+                    <div class="option correct disabled"><input type="radio" name="q7" value="A" disabled=""><label>Verifica se o cupom existe, se está ativo, se não ultrapassou a data de expiração e se o subtotal atingiu o valor mínimo exigido</label></div>
+                    <div class="option disabled"><input type="radio" name="q7" value="B" disabled=""><label>Apenas verifica se o código foi digitado em letras minúsculas</label></div>
+                    <div class="option disabled"><input type="radio" name="q7" value="C" disabled=""><label>Exige que o cliente ligue para a loja por telefone</label></div>
+                    <div class="option disabled"><input type="radio" name="q7" value="D" disabled=""><label>Não faz nenhuma verificação, todo cupom sempre aplica 90%</label></div>
+                </div>
+            </div>
+
+            <!-- Q8 -->
+            <div class="question" id="q8">
+                <div class="question-header">
+                    <span class="question-number">8</span>
+                    Para que serve a função "➕ Inserir Pedido Manual (Balcão)" no painel do Administrador?
+                </div>
+                <div class="options">
+                    <div class="option correct disabled"><input type="radio" name="q8" value="A" disabled=""><label>Permitir ao operador cadastrar vendas realizadas presencialmente no balcão ou por telefone, integrando ao faturamento geral</label></div>
+                    <div class="option disabled"><input type="radio" name="q8" value="B" disabled=""><label>Apagar todos os clientes do banco</label></div>
+                    <div class="option disabled"><input type="radio" name="q8" value="C" disabled=""><label>Desconectar a internet do navegador</label></div>
+                    <div class="option disabled"><input type="radio" name="q8" value="D" disabled=""><label>Imprimir comprovantes em folha de jornal</label></div>
+                </div>
+            </div>
+
+            <!-- Q9 -->
+            <div class="question tf" id="q9">
+                <div class="question-header">
+                    <span class="question-number">9</span>
+                    Ao alterar o status de um pedido para "Entregue" no painel do Administrador, o cliente logado correspondente tem a avaliação daquele produto liberada imediatamente.
+                </div>
+                <div class="options tf">
+                    <div class="option correct disabled"><input type="radio" name="q9" value="V" disabled=""><label>✅ Verdadeiro</label></div>
+                    <div class="option disabled"><input type="radio" name="q9" value="F" disabled=""><label>❌ Falso</label></div>
+                </div>
+            </div>
+
+            <!-- Q10 -->
+            <div class="question tf" id="q10">
+                <div class="question-header">
+                    <span class="question-number">10</span>
+                    A função de "Exportar Backup JSON" gera um arquivo baixável contendo todas as tabelas relacionais (`produtos`, `clientes`, `pedidos`, `cupons` e `config`) para restauração em qualquer dispositivo.
+                </div>
+                <div class="options tf">
+                    <div class="option correct disabled"><input type="radio" name="q10" value="V" disabled=""><label>✅ Verdadeiro</label></div>
+                    <div class="option disabled"><input type="radio" name="q10" value="F" disabled=""><label>❌ Falso</label></div>
+                </div>
+            </div>
+
+            <!-- Q11 -->
+            <div class="question" id="q11">
+                <div class="question-header">
+                    <span class="question-number">11</span>
+                    Se um visitante tentar clicar em "Finalizar Compra" no carrinho sem estar autenticado em uma conta de cliente, o que o aplicativo faz?
+                </div>
+                <div class="options">
+                    <div class="option correct disabled"><input type="radio" name="q11" value="A" disabled=""><label>Fecha o carrinho e abre o modal de Identificação/Cadastro exigindo login para vincular o pedido</label></div>
+                    <div class="option disabled"><input type="radio" name="q11" value="B" disabled=""><label>Conclui a compra com valor zerado</label></div>
+                    <div class="option disabled"><input type="radio" name="q11" value="C" disabled=""><label>Bloqueia o computador permanentemente</label></div>
+                    <div class="option disabled"><input type="radio" name="q11" value="D" disabled=""><label>Envia os produtos para um endereço aleatório</label></div>
+                </div>
+            </div>
+
+            <!-- Q12 -->
+            <div class="question tf" id="q12">
+                <div class="question-header">
+                    <span class="question-number">12</span>
+                    O Administrador pode atualizar sua própria senha na aba "Backup &amp; Senha", sendo a nova credencial gravada na chave `db_config` do `localStorage`.
+                </div>
+                <div class="options tf">
+                    <div class="option correct disabled"><input type="radio" name="q12" value="V" disabled=""><label>✅ Verdadeiro</label></div>
+                    <div class="option disabled"><input type="radio" name="q12" value="F" disabled=""><label>❌ Falso</label></div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 20px;" class="no-print">
+                <button class="btn" onclick="corrigirQuiz()">✅ Verificar Respostas</button>
+                <button class="btn btn-secondary" onclick="limparQuiz()">🔄 Limpar Respostas</button>
+            </div>
+
+            <!-- RESULTADOS -->
+            <div class="result-box show" id="resultadoQuiz">
+                <h3 style="color:#4f46e5; margin-bottom: 8px;">📊 Relatório de Desempenho do Aluno</h3>
+                <div class="score" id="pontuacao">12 / 12</div>
+                <div id="feedback"><div class="feedback-item correct">✅ <strong>Questão 1:</strong> Correta! <div class="explicacao">Compartilhar o LocalStorage permite que o Admin altere dados e o Cliente veja o resultado imediatamente sem requisições de rede.</div></div><div class="feedback-item correct">✅ <strong>Questão 2:</strong> Correta! <div class="explicacao">A regra de negócio exige que o cliente tenha comprado o item e que o pedido esteja com status Entregue para desbloquear a avaliação.</div></div><div class="feedback-item correct">✅ <strong>Questão 3:</strong> Correta! <div class="explicacao">A lógica subtrai a quantidade comprada do estoque em db_produtos para manter o controle de estoque em tempo real.</div></div><div class="feedback-item correct">✅ <strong>Questão 4:</strong> Correta! <div class="explicacao">O seletor [ - ] QTD [ + ] calcula o subtotal daquele item específico antes de adicioná-lo ao carrinho de compras.</div></div><div class="feedback-item correct">✅ <strong>Questão 5:</strong> Correta! <div class="explicacao">As credenciais iniciais são admin@loja.com / admin123, podendo ser alteradas na aba de configurações.</div></div><div class="feedback-item correct">✅ <strong>Questão 6:</strong> Correta! <div class="explicacao">O Ticket Médio representa o valor médio gasto por compra (Faturamento Total / Número de Pedidos).</div></div><div class="feedback-item correct">✅ <strong>Questão 7:</strong> Correta! <div class="explicacao">O sistema verifica a existência, o status ativo, a data de expiração e o valor mínimo do subtotal.</div></div><div class="feedback-item correct">✅ <strong>Questão 8:</strong> Correta! <div class="explicacao">A inserção manual permite registrar vendas presenciais de balcão ou telefone integrando ao faturamento geral.</div></div><div class="feedback-item correct">✅ <strong>Questão 9:</strong> Correta! <div class="explicacao">Verdadeiro. O gatilho de avaliação consulta o status Entregue no array de pedidos para liberar o formulário.</div></div><div class="feedback-item correct">✅ <strong>Questão 10:</strong> Correta! <div class="explicacao">Verdadeiro. O arquivo JSON exportado contém todas as 5 chaves relacionais do LocalStorage.</div></div><div class="feedback-item correct">✅ <strong>Questão 11:</strong> Correta! <div class="explicacao">O sistema exige identificação para saber qual cliente comprou e para onde enviar a mercadoria.</div></div><div class="feedback-item correct">✅ <strong>Questão 12:</strong> Correta! <div class="explicacao">Verdadeiro. A nova senha do Administrador é gravada de forma persistente na chave db_config.</div></div></div>
+                <div style="margin-top: 18px;" class="no-print">
+                    <button class="btn btn-success" onclick="window.print()">🖨️ Imprimir / Salvar em PDF</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+        SEÇÃO 5: DESAFIO PRÁTICO DE CUSTOMIZAÇÃO PARA O ESTUDANTE
+        ============================================================ -->
+        <section class="card">
+            <h2>🎨 5. Desafio Prático: Adequando o Template ao Seu Negócio</h2>
+
+            <div class="missao-box">
+                🎯 <strong>MISSÃO PRÁTICA DO ESTUDANTE:</strong><br>
+                Você deve abrir o arquivo <code>app.html</code> no seu editor (VS Code) e personalizá-lo para um <strong>modelo de negócio próprio</strong> (ex: <em>Cafeteria, Pet Shop, Loja de Roupas, Pizzaria Gourmet, Farmácia ou Acessórios Geek</em>).
+            </div>
+
+            <h3>📋 Roteiro de Modificações no Código:</h3>
+
+            <ol>
+                <li>
+                    <strong>Customizar a Identidade Visual &amp; Nome:</strong>
+                    <ul>
+                        <li>Altere o título na tag <code>&lt;title&gt;</code> e a logo na classe <code>.brand-logo</code> (ex: <code>🐾 PetExpress Pro</code> ou <code>☕ CaféGourmet</code>).</li>
+                        <li>No topo do CSS em <code>:root</code>, personalize as cores da sua marca:
+                            <pre style="background:#090d16; color:#38bdf8; padding:8px 12px; border-radius:6px; margin:4px 0; font-size:0.8rem;">--primary: #d97706; /* Sua cor principal */
+--secondary: #059669; /* Sua cor de destaque */</pre>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Personalizar os Produtos Iniciais (`SEED_PRODUTOS`):</strong>
+                    <ul>
+                        <li>No JavaScript, localize a constante <code>SEED_PRODUTOS</code> e substitua os 4 itens padrão por produtos reais do seu negócio com preços, descrições e emojis adequados.</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Personalizar o Administrador &amp; Clientes Iniciais:</strong>
+                    <ul>
+                        <li>Na constante <code>SEED_CONFIG</code>, altere o e-mail e a senha inicial do seu administrador.</li>
+                        <li>Na constante <code>SEED_CLIENTES</code>, personalize o nome e endereço do seu cliente de teste.</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Criar um Cupom Exclusivo da Sua Loja (`SEED_CUPONS`):</strong>
+                    <ul>
+                        <li>Adicione um cupom personalizado (ex: <code>PRIMEIRACOMPRA</code>, <code>PET15</code> ou <code>CAFE10</code>) com valor mínimo condizente.</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Publicar no GitHub Pages e Enviar:</strong>
+                    <ul>
+                        <li>Crie um repositório no seu GitHub, faça o commit do seu <code>index.html</code> customizado e ative o GitHub Pages.</li>
+                        <li>Envie o link público pelo formulário abaixo!</li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+
+        <!-- FOOTER PADRÃO DE ENTREGA -->
+        <footer class="footer-card">
+            <div class="destaque-footer">
+                📌 <strong>ATENÇÃO ALUNOS:</strong> Após realizar o Quiz e aplicar as modificações de customização da sua loja no código, envie o link do seu repositório/GitHub Pages pelo formulário oficial.
+            </div>
+
+            <h4 style="margin-bottom: 12px; color: #4f46e5;">📋 Formulário Oficial de Entrega</h4>
+
+            <div class="footer-links">
+                <a href="https://forms.gle/zbUB57A4FteUDsKSA" target="_blank" class="footer-link">
+                    <span style="font-size:1.4rem;">📝</span>
+                    <div style="text-align:left; flex:1;">
+                        <strong>Formulário de Entrega do Relatório</strong>
+                        <small style="display:block; color:#64748b; font-size:0.75rem;">Envio do Quiz + Link do App Customizado no GitHub Pages</small>
+                    </div>
+                    <span style="font-size:1.2rem; font-weight:bold; color:#28a745;">→</span>
+                </a>
+            </div>
+
+            <p style="margin-top: 18px; font-size: 0.75rem; color: #64748b;">
+                🛍️ LojaExpress Pro • Disciplina: Programação Mobile • 2026
+            </p>
+        </footer>
+
+    </div>
+
+    <!-- BOTÃO TOPO -->
+    <button class="btn-top no-print" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">⬆️ Topo</button>
+
+    <!-- SCRIPTS DO QUIZ -->
+    <script>
+        const gabarito = {
+            q1: 'A', q2: 'A', q3: 'A', q4: 'A', q5: 'A', q6: 'A',
+            q7: 'A', q8: 'A', q9: 'V', q10: 'V', q11: 'A', q12: 'V'
+        };
+
+        const explicacoes = {
+            q1: 'Compartilhar o LocalStorage permite que o Admin altere dados e o Cliente veja o resultado imediatamente sem requisições de rede.',
+            q2: 'A regra de negócio exige que o cliente tenha comprado o item e que o pedido esteja com status Entregue para desbloquear a avaliação.',
+            q3: 'A lógica subtrai a quantidade comprada do estoque em db_produtos para manter o controle de estoque em tempo real.',
+            q4: 'O seletor [ - ] QTD [ + ] calcula o subtotal daquele item específico antes de adicioná-lo ao carrinho de compras.',
+            q5: 'As credenciais iniciais são admin@loja.com / admin123, podendo ser alteradas na aba de configurações.',
+            q6: 'O Ticket Médio representa o valor médio gasto por compra (Faturamento Total / Número de Pedidos).',
+            q7: 'O sistema verifica a existência, o status ativo, a data de expiração e o valor mínimo do subtotal.',
+            q8: 'A inserção manual permite registrar vendas presenciais de balcão ou telefone integrando ao faturamento geral.',
+            q9: 'Verdadeiro. O gatilho de avaliação consulta o status Entregue no array de pedidos para liberar o formulário.',
+            q10: 'Verdadeiro. O arquivo JSON exportado contém todas as 5 chaves relacionais do LocalStorage.',
+            q11: 'O sistema exige identificação para saber qual cliente comprou e para onde enviar a mercadoria.',
+            q12: 'Verdadeiro. A nova senha do Administrador é gravada de forma persistente na chave db_config.'
+        };
+
+        function corrigirQuiz() {
+            let acertos = 0;
+            let feedbackHTML = '';
+            let total = 0;
+
+            for (let [id, gab] of Object.entries(gabarito)) {
+                const sel = document.querySelector(`input[name="${id}"]:checked`);
+                const qDiv = document.getElementById(id);
+                const opts = qDiv.querySelectorAll('.option');
+
+                if (sel) total++;
+
+                opts.forEach(opt => {
+                    const r = opt.querySelector('input[type="radio"]');
+                    if (r.value === gab) opt.classList.add('correct');
+                    else if (r.checked) opt.classList.add('wrong');
+                    r.disabled = true;
+                    opt.classList.add('disabled');
+                });
+
+                const num = id.replace('q', '');
+                if (sel && sel.value === gab) {
+                    acertos++;
+                    feedbackHTML += `<div class="feedback-item correct">✅ <strong>Questão ${num}:</strong> Correta! <div class="explicacao">${explicacoes[id]}</div></div>`;
+                } else {
+                    feedbackHTML += `<div class="feedback-item wrong">❌ <strong>Questão ${num}:</strong> Incorreta. <div class="explicacao">${explicacoes[id]}</div></div>`;
+                }
+            }
+
+            document.getElementById('pontuacao').innerText = acertos + ' / 12';
+            document.getElementById('feedback').innerHTML = feedbackHTML;
+            document.getElementById('resultadoQuiz').classList.add('show');
+            document.getElementById('resultadoQuiz').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function limparQuiz() {
+            document.querySelectorAll('input[type="radio"]').forEach(r => { r.checked = false; r.disabled = false; });
+            document.querySelectorAll('.option').forEach(opt => opt.classList.remove('correct', 'wrong', 'disabled'));
+            document.getElementById('resultadoQuiz').classList.remove('show');
+            window.scrollTo({ top: document.getElementById('sec-quiz').offsetTop - 20, behavior: 'smooth' });
+        }
+
+        document.querySelectorAll('.option').forEach(opt => {
+            opt.addEventListener('click', function() {
+                if (this.classList.contains('disabled')) return;
+                const r = this.querySelector('input[type="radio"]');
+                if (r) r.checked = true;
+            });
+        });
+    </script>
+
+</body></html>
